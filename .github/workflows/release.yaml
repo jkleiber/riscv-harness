@@ -23,7 +23,7 @@ jobs:
   build-ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/build@main
+      - uses: ./.github/actions/build@main
         with:
           target: release
           platform: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
   build-macos:
     runs-on: macos-latest
     steps:
-      - uses: ./.github/workflows/build@main
+      - uses: ./.github/actions/build@main
         with:
           target: release
           platform: macos-latest
@@ -49,7 +49,7 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: ./.github/workflows/build@main
+      - uses: ./.github/actions/build@main
         with:
           target: release
           platform: windows-latest
