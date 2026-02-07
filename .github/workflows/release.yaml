@@ -24,7 +24,7 @@ jobs:
             --generate-notes
 
   build-ubuntu:
-    needs: create_draft_release_page
+    needs: create_release_page
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -41,7 +41,7 @@ jobs:
           tag: ${{ inputs.version }}
 
   build-macos:
-    needs: create_draft_release_page
+    needs: create_release_page
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v6
@@ -58,7 +58,7 @@ jobs:
           tag: ${{ inputs.version }}
 
   build-windows:
-    needs: create_draft_release_page
+    needs: create_release_page
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v6
