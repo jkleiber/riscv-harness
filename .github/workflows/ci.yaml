@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Build ${{ matrix.os }} ${{ matrix.profile }}
-        uses: ./.github/actions/build@main
+        uses: ./.github/actions/build
         with:
           profile: ${{ matrix.profile }}
 
