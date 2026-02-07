@@ -1,0 +1,28 @@
+name: CI
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build-ubuntu:
+    steps:
+      - uses: ./.github/workflows/build@main
+        with:
+          target: debug
+          platform: ubuntu-latest
+
+  build-macos:
+    steps:
+      - uses: ./.github/workflows/build@main
+        with:
+          target: debug
+          platform: macos-latest
+
+  build-windows:
+    steps:
+      - uses: ./.github/workflows/build@main
+        with:
+          target: debug
+          platform: windows-latest
+          

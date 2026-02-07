@@ -1,0 +1,27 @@
+name: 'Build'
+on:
+  workflow_call:
+    inputs:
+      profile:
+        required: true
+      platform:
+        required: true
+
+jobs:
+  release:
+    name: ${{ inputs.platform }} release
+    runs-on: ${{ inputs.platform }}
+    timeout-minutes: 5
+    steps:
+      - name: Check out default branch
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: cargo install
+
+      - name: Build binary
+        run: cargo build --profile ${{ inputs.profile }}
+
+      
+
+      

@@ -1,0 +1,57 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  create_draft_release_page:
+    steps:
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: true
+          prerelease: true
+          release_name: ${{ inputs.version }}
+          tag_name: ${{ github.ref }}
+          body_path: CHANGELOG.md
+
+  build-ubuntu:
+    steps:
+      - uses: ./.github/workflows/build@main
+        with:
+          target: release
+          platform: ubuntu-latest
+
+      - name: Upload ubuntu artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/release/riscv-harness
+
+  build-macos:
+    steps:
+      - uses: ./.github/workflows/build@main
+        with:
+          target: release
+          platform: macos-latest
+
+      - name: Upload macOS artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/release/riscv-harness
+
+  build-windows:
+    steps:
+      - uses: ./.github/workflows/build@main
+        with:
+          target: release
+          platform: windows-latest
+
+      - name: Upload Windows artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/release/riscv-harness.exe
+          
