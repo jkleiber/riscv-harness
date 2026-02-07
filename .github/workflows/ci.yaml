@@ -8,6 +8,8 @@ jobs:
   build-ubuntu:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+
       - uses: ./.github/actions/build@main
         with:
           target: debug
@@ -16,6 +18,8 @@ jobs:
   build-macos:
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v6
+
       - uses: ./.github/actions/build@main
         with:
           target: debug
@@ -24,6 +28,8 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v6
+      
       - uses: ./.github/actions/build@main
         with:
           target: debug
