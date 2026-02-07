@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      
+
       - name: release
         uses: actions/create-release@v1
         id: create_release
@@ -26,10 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: ./.github/actions/build@main
+
+      - name: Build
+        uses: ./.github/actions/build@main
         with:
-          target: release
-          platform: ubuntu-latest
+          profile: release
 
       - name: Upload ubuntu artifacts
         uses: softprops/action-gh-release@v2
@@ -40,10 +41,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: ./.github/actions/build@main
+      
+      - name: Build
+        uses: ./.github/actions/build@main
         with:
-          target: release
-          platform: macos-latest
+          profile: release
 
       - name: Upload macOS artifacts
         uses: softprops/action-gh-release@v2
@@ -54,10 +56,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: ./.github/actions/build@main
+
+      - name: Build
+        uses: ./.github/actions/build@main
         with:
-          target: release
-          platform: windows-latest
+          profile: release
 
       - name: Upload Windows artifacts
         uses: softprops/action-gh-release@v2

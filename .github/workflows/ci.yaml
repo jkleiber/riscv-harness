@@ -4,34 +4,20 @@ on:
   pull_request:
     branches: [ "*" ]
 
+
 jobs:
-  build-ubuntu:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      matrix:
+        profile: [debug, release]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
 
-      - uses: ./.github/actions/build@main
+      - name: Build ${{ matrix.os }} ${{ matrix.profile }}
+        uses: ./.github/actions/build@main
         with:
-          target: debug
-          platform: ubuntu-latest
+          profile: ${{ matrix.profile }}
 
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: ./.github/actions/build@main
-        with:
-          target: debug
-          platform: macos-latest
-
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v6
-      
-      - uses: ./.github/actions/build@main
-        with:
-          target: debug
-          platform: windows-latest
           
