@@ -12,10 +12,6 @@ runs:
     - name: Check out default branch
       uses: actions/checkout@v6
 
-    - name: Install dependencies
-      shell: bash
-      run: cargo install
-
     - name: Build binary
       shell: bash
       run: cargo build --profile ${{ inputs.profile }}
