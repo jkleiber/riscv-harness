@@ -20,7 +20,7 @@ jobs:
         run: |
           gh release create "${{ inputs.version }}" \
             --repo="$GITHUB_REPOSITORY" \
-            --title="${GITHUB_REPOSITORY} ${{ inputs.version }}" \
+            --title="${GITHUB_REPOSITORY#*/} ${{ inputs.version }}" \
             --generate-notes
 
   build-ubuntu:
@@ -38,7 +38,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: target/release/riscv-harness
-          tag: ${{ inputs.version }}
+          tag_name: ${{ inputs.version }}
 
   build-macos:
     needs: create_release_page
@@ -55,7 +55,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: target/release/riscv-harness
-          tag: ${{ inputs.version }}
+          tag_name: ${{ inputs.version }}
 
   build-windows:
     needs: create_release_page
@@ -72,5 +72,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: target/release/riscv-harness.exe
-          tag: ${{ inputs.version }}
+          tag_name: ${{ inputs.version }}
           
