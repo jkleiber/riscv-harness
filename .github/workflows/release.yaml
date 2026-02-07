@@ -36,10 +36,13 @@ jobs:
         with:
           profile: release
 
+      - name: Rename file
+        run: mv target/release/riscv-harness target/release/riscv-harness-linux
+
       - name: Upload ubuntu artifacts
         uses: softprops/action-gh-release@v2
         with:
-          files: target/release/riscv-harness
+          files: target/release/riscv-harness-linux
           tag_name: ${{ inputs.version }}
 
   build-macos:
@@ -55,10 +58,13 @@ jobs:
         with:
           profile: release
 
+      - name: Rename file
+        run: mv target/release/riscv-harness target/release/riscv-harness-macos
+
       - name: Upload macOS artifacts
         uses: softprops/action-gh-release@v2
         with:
-          files: target/release/riscv-harness
+          files: target/release/riscv-harness-macos
           tag_name: ${{ inputs.version }}
 
   build-windows:
@@ -74,9 +80,12 @@ jobs:
         with:
           profile: release
 
+      - name: Rename file
+        run: mv target/release/riscv-harness.exe target/release/riscv-harness-win64.exe
+
       - name: Upload Windows artifacts
         uses: softprops/action-gh-release@v2
         with:
-          files: target/release/riscv-harness.exe
+          files: target/release/riscv-harness-win64.exe
           tag_name: ${{ inputs.version }}
           
