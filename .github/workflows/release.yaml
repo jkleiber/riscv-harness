@@ -7,7 +7,7 @@ on:
         type: string
 
 jobs:
-  create_draft_release_page:
+  create_release_page:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,15 +15,13 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Create release page
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          draft: true
-          prerelease: true
-          release_name: Release ${{ inputs.version }}
-          tag_name: ${{ inputs.version }}
-          body_path: CHANGELOG.md
+        run: |
+          gh release create "${{ inputs.version }}" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="${GITHUB_REPOSITORY} ${{ inputs.version }}" \
+            --generate-notes
 
   build-ubuntu:
     needs: create_draft_release_page
