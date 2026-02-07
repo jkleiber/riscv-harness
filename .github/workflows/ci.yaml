@@ -6,6 +6,7 @@ on:
 
 jobs:
   build-ubuntu:
+    runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/build@main
         with:
@@ -13,6 +14,7 @@ jobs:
           platform: ubuntu-latest
 
   build-macos:
+    runs-on: macos-latest
     steps:
       - uses: ./.github/workflows/build@main
         with:
@@ -20,6 +22,7 @@ jobs:
           platform: macos-latest
 
   build-windows:
+    runs-on: windows-latest
     steps:
       - uses: ./.github/workflows/build@main
         with:

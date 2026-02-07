@@ -4,8 +4,10 @@ on:
     inputs:
       profile:
         required: true
+        type: string
       platform:
         required: true
+        type: string
 
 jobs:
   release:

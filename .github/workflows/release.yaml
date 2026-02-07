@@ -8,6 +8,7 @@ on:
 
 jobs:
   create_draft_release_page:
+    runs-on: ubuntu-latest
     steps:
       - name: release
         uses: actions/create-release@v1
@@ -20,6 +21,7 @@ jobs:
           body_path: CHANGELOG.md
 
   build-ubuntu:
+    runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/build@main
         with:
@@ -32,6 +34,7 @@ jobs:
           files: target/release/riscv-harness
 
   build-macos:
+    runs-on: macos-latest
     steps:
       - uses: ./.github/workflows/build@main
         with:
@@ -44,6 +47,7 @@ jobs:
           files: target/release/riscv-harness
 
   build-windows:
+    runs-on: windows-latest
     steps:
       - uses: ./.github/workflows/build@main
         with:
