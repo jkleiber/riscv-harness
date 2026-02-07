@@ -9,19 +9,21 @@ on:
 jobs:
   create_draft_release_page:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v6
 
-      - name: release
+      - name: Create release page
         uses: actions/create-release@v1
-        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           draft: true
           prerelease: true
-          release_name: ${{ inputs.version }}
-          tag_name: ${{ github.ref }}
+          release_name: Release ${{ inputs.version }}
+          tag_name: ${{ inputs.version }}
           body_path: CHANGELOG.md
-          token: ${{ secrets.GITHUB_TOKEN }}
 
   build-ubuntu:
     needs: create_draft_release_page
